@@ -1,4 +1,4 @@
-# .gitignore
+# dependencies & build
 node_modules/
 dist/
 .vite/
@@ -6,3 +6,6 @@ dist/
 tmp/
 *.log
 *.tsbuildinfo
+
+# via-keyboards 生成的定义文件（构建再产出）
+public/definitions/
