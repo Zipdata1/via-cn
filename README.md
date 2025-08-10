@@ -28,4 +28,5 @@ cd via-cn
 powershell依次运行：
 powershell -c "irm bun.sh/install.ps1 | iex"
 bun install
+bun uninstall --force via-keyboards
 bun install --force github:the-via/keyboards
