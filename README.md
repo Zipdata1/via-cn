@@ -23,3 +23,8 @@ cd via-cn
 5. 启动生产版本预览
    npm run start
    启动后访问：http://localhost:8080
+
+部分用户可能需要安装依赖，安装方法：
+powershell依次运行：powershell -c "irm bun.sh/install.ps1 | iex"
+bun install
+bun run build:kbs
