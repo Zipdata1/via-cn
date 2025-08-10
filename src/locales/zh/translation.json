@@ -1,0 +1,157 @@
+{
+  "nav": {
+    "configure": "配置",
+    "keyTester": "按键测试",
+    "settings": "设置",
+    "firmwareDocs": "固件与文档",
+    "discord": "Discord 社群",
+    "github": "GitHub",
+    "authorize": "授权设备",
+    "default": "主页",
+    "design": "设计",
+    "debug": "调试"
+  },
+  "common": {
+    "save": "保存",
+    "load": "加载",
+    "import": "导入",
+    "export": "导出",
+    "apply": "应用",
+    "reset": "重置",
+    "cancel": "取消",
+    "ok": "确定",
+    "close": "关闭",
+    "back": "返回",
+    "next": "下一步",
+    "search": "搜索",
+    "connect": "连接",
+    "disconnect": "断开连接",
+    "connected": "已连接",
+    "disconnected": "未连接",
+    "device": "设备",
+    "keyboard": "键盘",
+    "layout": "布局",
+    "layer": "层",
+    "layers": "多层",
+    "macro": "宏",
+    "macros": "宏",
+    "rgb": "灯效",
+    "effect": "效果",
+    "speed": "速度",
+    "brightness": "亮度",
+    "saturation": "饱和度",
+    "hue": "色相",
+    "color": "颜色",
+    "profile": "配置",
+    "profiles": "配置集",
+    "language": "语言",
+    "english": "英语",
+    "chineseSimplified": "简体中文",
+    "confirm": "确定",
+    "download": "下载",
+    "saveChanges": "保存更改",
+    "click": "点击",
+    "loading": "加载中"
+  },
+  "dialogs": {
+    "confirmResetTitle": "确认重置？",
+    "confirmResetBody": "这将把当前页面设置恢复为默认值。",
+    "confirm": "确认"
+  },
+  "errors": {
+    "deviceNotFound": "未发现兼容设备。",
+    "connectionLost": "连接已断开。",
+    "permissionDenied": "权限被拒绝，请授予 WebHID 访问权限。"
+  },
+  "tooltips": {
+    "openHID": "点击通过 WebHID 连接键盘。",
+    "unlockBootloader": "按住引导键或使用组合键进入引导模式。"
+  },
+  "loading": {
+    "loading": "正在加载…",
+    "searching": "正在搜索…"
+  },
+  "saveLoad": {
+    "saveCurrentLayout": "保存当前布局",
+    "loadSavedLayout": "加载已保存的布局",
+    "fileReadCancelled": "文件读取已取消。",
+    "couldNotLoadInvalidData": "无法加载文件：数据无效。",
+    "couldNotImportDifferentKeyboard": "无法导入布局。此文件适用于其他键盘：{{name}}",
+    "couldNotImportIncorrectKeys": "无法导入布局：一个或多个层的按键数量不正确。",
+    "couldNotImportIncorrectMacros": "无法导入布局：宏数量不正确。"
+  },
+  "test": {
+    "resetKeyboard": "重置键盘",
+    "checkKey": "按键检测",
+    "testMatrix": "矩阵测试",
+    "keySounds": "按键音",
+    "volume": "音量",
+    "transpose": "移调",
+    "waveform": "波形",
+    "mode": "模式",
+    "reset": "重置",
+    "waveformOption": {
+      "sine": "正弦波",
+      "triangle": "三角波",
+      "sawtooth": "锯齿波",
+      "square": "方波"
+    },
+    "modeOption": {
+      "wickiHayden": "Wicki‑Hayden",
+      "chromatic": "半音阶",
+      "random": "随机"
+    }
+  },
+  "debug": {
+    "eepromReset": "EEPROM 复位",
+    "bootloaderJump": "跳转引导程序"
+  },
+  "configure": {
+    "encoder": {
+      "rotateCCW": "逆时针旋转",
+      "rotateCW": "顺时针旋转",
+      "press": "按下编码器",
+      "unsupported": {
+        "0": "当前固件不支持旋转编码器。请安装最新固件",
+        "1": "到你的设备上。"
+      }
+    },
+    "layer": {
+      "label": "层"
+    }
+  },
+  "macros": {
+    "noRecorded": "尚未录制宏…"
+  },
+  "settings": {
+    "showDesignTab": "显示 Design 标签",
+    "fastKeyMapping": "快速按键映射",
+    "lightMode": "浅色模式",
+    "keycapTheme": "系统主题",
+    "renderMode": "渲染模式",
+    "showDiagnostics": "显示诊断信息",
+    "viaProtocol": "VIA 固件协议",
+    "requiresDevice": "需要已连接的设备",
+    "renderMode2D": "二维",
+    "renderMode3D": "三维"
+  },
+  "design": {
+    "layout": {
+      "isoEnter": "ISO 回车",
+      "steppedCaps": "阶梯大写键",
+      "splitLeftShift": "分裂左 Shift"
+    },
+    "addDefinition": "添加定义",
+    "loadDraftDefinition": "加载草稿定义",
+    "useV2Deprecated": "使用 V2 定义（已弃用）",
+    "shownKeyboardDefinition": "当前键盘定义",
+    "showMatrix": "显示矩阵",
+    "draftDefinitions": "草稿定义",
+    "definitions": "个定义"
+  },
+  "NAV": {
+    "DEFAULT": "主页",
+    "DESIGN": "设计",
+    "DEBUG": "调试"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "nav": {
+    "configure": "Configure",
+    "keyTester": "Key Tester",
+    "settings": "Settings",
+    "firmwareDocs": "Firmware + Docs",
+    "discord": "Discord",
+    "github": "Github",
+    "authorize": "Authorize device"
+  },
+  "common": {
+    "save": "Save",
+    "load": "Load",
+    "import": "Import",
+    "export": "Export",
+    "apply": "Apply",
+    "reset": "Reset",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "search": "Search",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "device": "Device",
+    "keyboard": "Keyboard",
+    "layout": "Layout",
+    "layer": "Layer",
+    "layers": "Layers",
+    "macro": "Macro",
+    "macros": "Macros",
+    "rgb": "RGB",
+    "effect": "Effect",
+    "speed": "Speed",
+    "brightness": "Brightness",
+    "saturation": "Saturation",
+    "hue": "Hue",
+    "color": "Color",
+    "profile": "Profile",
+    "profiles": "Profiles",
+    "language": "Language",
+    "english": "English",
+    "chineseSimplified": "简体中文",
+    "confirm": "Confirm",
+    "download": "Download",
+    "saveChanges": "Save Changes",
+    "click": "Click",
+    "loading": "Loading"
+  },
+  "dialogs": {
+    "confirmResetTitle": "Reset settings?",
+    "confirmResetBody": "This will reset current page settings to default.",
+    "confirm": "Confirm"
+  },
+  "errors": {
+    "deviceNotFound": "No compatible device found.",
+    "connectionLost": "Connection lost.",
+    "permissionDenied": "Permission denied. Please grant WebHID access."
+  },
+  "tooltips": {
+    "openHID": "Click to connect your keyboard via WebHID.",
+    "unlockBootloader": "Hold boot key or use reset combo to enter bootloader."
+  },
+  "loading": {
+    "loading": "Loading...",
+    "searching": "Searching"
+  },
+  "saveLoad": {
+    "saveCurrentLayout": "Save Current Layout",
+    "loadSavedLayout": "Load Saved Layout",
+    "fileReadCancelled": "File reading was cancelled.",
+    "couldNotLoadInvalidData": "Could not load file: invalid data.",
+    "couldNotImportDifferentKeyboard": "Could not import layout. This file was created for a different keyboard: {{name}}",
+    "couldNotImportIncorrectKeys": "Could not import layout: incorrect number of keys in one or more layers.",
+    "couldNotImportIncorrectMacros": "Could not import layout: incorrect number of macros."
+  },
+  "test": {
+    "resetKeyboard": "Reset Keyboard",
+    "checkKey": "Check Key",
+    "testMatrix": "Test Matrix",
+    "keySounds": "Key Sounds",
+    "volume": "Volume",
+    "transpose": "Transpose",
+    "waveform": "Waveform",
+    "mode": "Mode",
+    "reset": "Reset",
+    "waveformOption": {
+      "sine": "Sine",
+      "triangle": "Triangle",
+      "sawtooth": "Sawtooth",
+      "square": "Square"
+    },
+    "modeOption": {
+      "wickiHayden": "Wicki-Hayden",
+      "chromatic": "Chromatic",
+      "random": "Random"
+    }
+  },
+  "debug": {
+    "eepromReset": "EEPROM Reset",
+    "bootloaderJump": "Bootloader Jump"
+  },
+  "configure": {
+    "encoder": {
+      "rotateCCW": "Rotate Counterclockwise",
+      "rotateCW": "Rotate Clockwise",
+      "press": "Press Encoder",
+      "unsupported": {
+        "0": "Your current firmware does not support rotary encoders. Install the latest",
+        "1": "firmware for your device."
+      }
+    },
+    "layer": {
+      "label": "Layer"
+    }
+  },
+  "macros": {
+    "noRecorded": "No macro recorded yet..."
+  },
+  "settings": {
+    "showDesignTab": "Show Design tab",
+    "fastKeyMapping": "Fast Key Mapping",
+    "lightMode": "Light Mode",
+    "keycapTheme": "Keycap Theme",
+    "renderMode": "Render Mode",
+    "showDiagnostics": "Show Diagnostic Information",
+    "viaProtocol": "VIA Firmware Protocol",
+    "requiresDevice": "Requires connected device",
+    "renderMode2D": "2D",
+    "renderMode3D": "3D",
+    "theme": {
+      "DEFAULT": "DEFAULT",
+      "OLIVIA_DARK": "OLIVIA DARK",
+      "OLIVIA_LIGHT": "OLIVIA LIGHT",
+      "NORD_DARK": "NORD DARK",
+      "NORD_LIGHT": "NORD LIGHT",
+      "DRACULA": "DRACULA",
+      "MIAMI_NIGHTS": "MIAMI NIGHTS"
+    }
+  },
+  "design": {
+    "layout": {
+      "isoEnter": "ISO Enter",
+      "steppedCaps": "Stepped Caps",
+      "splitLeftShift": "Split Left Shift"
+    },
+    "addDefinition": "Add Definition",
+    "loadDraftDefinition": "Load Draft Definition",
+    "useV2Deprecated": "Use V2 definitions (deprecated)",
+    "shownKeyboardDefinition": "Shown Keyboard Definition",
+    "showMatrix": "Show Matrix",
+    "draftDefinitions": "Draft Definitions",
+    "definitions": "Definitions"
+  }
+}

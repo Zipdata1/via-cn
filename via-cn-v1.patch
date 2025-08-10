@@ -1,0 +1,339 @@
+diff --git a/package.json b/package.json
+index 0000000..1111111 100644
+--- a/package.json
++++ b/package.json
+@@ -1,20 +1,36 @@
+ {
+   "license": "GPL-3.0",
+   "scripts": {
++    "start": "npm run dev",
+     "dev": "node scripts/build-definitions.js && vite --force",
+     "build": "bun run build:kbs && tsc && vite build",
+     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+     "refresh-kbs": "bun uninstall --force via-keyboards && bun install --force github:the-via/keyboards",
+     "build:azure": "bun run refresh-kbs && bun run build",
+     "preview": "vite preview",
+     "build:kbs": "via-keyboards public/definitions",
+-    "find-deadcode": "ts-prune"
++    "find-deadcode": "ts-prune",
++    "intl:extract": "i18next 'src/**/*.{ts,tsx}' -c i18next-parser.config.cjs"
+   },
+   "engines": {
+     "node": ">=18.0.0"
+   },
+   "overrides": {
+     "typescript": "^5.6.2"
+   },
+   "dependencies": {
++    "i18next": "^23.12.0",
++    "i18next-icu": "^2.3.0",
++    "i18next-browser-languagedetector": "^7.2.0",
++    "react-i18next": "^15.0.0",
+     "@fortawesome/fontawesome-free": "^6.3.0",
+     "@fortawesome/fontawesome-svg-core": "^6.3.0",
+     "@fortawesome/free-brands-svg-icons": "^6.3.0",
+     "@fortawesome/free-solid-svg-icons": "^6.3.0",
+     "@fortawesome/react-fontawesome": "^0.2.0",
+     "@microsoft/applicationinsights-web": "^2.8.10",
+@@ -100,6 +116,7 @@
+     "@react-three/drei": "^9.114.2",
+     "@react-hook/resize-observer": "^1.2.6",
+     "@react-spring/three": "^9.7.5"
+   }
+ }
+diff --git a/README.md b/README.md
+index 2222222..3333333 100644
+--- a/README.md
++++ b/README.md
+@@ -1,3 +1,6 @@
++> 🇨🇳 中文版文档见：**README.zh-CN.md**
++
+ # VIA Web Application (usevia.app) - Your keyboards best friend
+@@ -20,7 +23,7 @@
+-#### `npm run start`
+-Runs the app in the development mode. Open http://localhost:8080 to view it in the browser.
++#### `npm run start` / `npm run dev`
++Runs the app in the development mode. Vite will print the local URL (commonly http://localhost:5173).
+ 
+ The page will reload if you make edits. You will also see any lint errors in the console.
+diff --git a/README.zh-CN.md b/README.zh-CN.md
+new file mode 100644
+index 0000000..4444444
+--- /dev/null
++++ b/README.zh-CN.md
+@@ -0,0 +1,120 @@
++# VIA Web 应用（usevia.app）— 你键盘的好帮手
++
++VIA 是一个开源的 **Web** 界面，用于配置你的 **QMK** 键盘。无需重新编译固件，就可以随时自定义按键映射、创建宏、调整 RGB（若键盘支持）。这让个性化变得更简单、更易用。
++
++## 让 VIA 支持你的键盘（面向厂商 / 开发者）
++1. 将你的键盘源码合入 **QMK Firmware** 主分支。  
++2. 将你的 `keymaps/via` 键位图合入 **VIA 的 QMK Userspace** 主分支。  
++3. 为你的键盘编写 **JSON 定义文件** 并向 **VIA Keyboards** 仓库提交 PR。  
++请严格遵循 **Specification** 规范文档，以便顺利审核与合并。
++
++## 本地开发
++- `npm run start` / `npm run dev`：开发模式启动（Vite 会打印本地地址，如 `http://localhost:5173`）  
++- `npm run build`：构建静态站点到 `build/` 目录  
++- `npm run test`：运行测试（可加 `--watch` 进入交互模式）
++
++> 本项目使用 BrowserStack 进行测试。
++
++## 离线客户端
++社区维护了桌面封装（electron wrapper），与官方无隶属关系，官方不提供支持。
++
++## 反馈问题
++如遇问题，请在本仓库 **Issues** 区提报。提之前请先搜索是否已有相同问题。
++
++## 许可证
++本项目使用 GPL-3.0 许可。
+diff --git a/index.html b/index.html
+index 5555555..6666666 100644
+--- a/index.html
++++ b/index.html
+@@ -1,5 +1,6 @@
+-<!doctype html>
+-<html lang="en">
++<!doctype html>
++<!-- 默认中文；前端仍可在运行时切换 -->
++<html lang="zh-CN">
+   <head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+@@ -7,6 +8,7 @@
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+-    <title>VIA</title>
++    <title>VIA 键盘配置器</title>
+   </head>
+   <body>
+     <div id="root"></div>
+   </body>
+ </html>
+diff --git a/src/i18n.ts b/src/i18n.ts
+new file mode 100644
+index 0000000..7777777
+--- /dev/null
++++ b/src/i18n.ts
+@@ -0,0 +1,58 @@
++import i18n from "i18next";
++import { initReactI18next } from "react-i18next";
++import ICU from "i18next-icu";
++import LanguageDetector from "i18next-browser-languagedetector";
++import en from "./locales/en/translation.json";
++import zh from "./locales/zh/translation.json";
++
++i18n
++  .use(ICU)
++  .use(LanguageDetector)
++  .use(initReactI18next)
++  .init({
++    fallbackLng: "en",
++    supportedLngs: ["en", "zh"],
++    resources: {
++      en: { translation: en },
++      zh: { translation: zh },
++    },
++    interpolation: { escapeValue: false },
++    detection: {
++      order: ["querystring", "localStorage", "navigator"],
++      caches: ["localStorage"],
++    },
++  });
++
++export default i18n;
+diff --git a/src/locales/en/translation.json b/src/locales/en/translation.json
+new file mode 100644
+index 0000000..8888888
+--- /dev/null
++++ b/src/locales/en/translation.json
+@@ -0,0 +1,160 @@
++{
++  "nav": {
++    "configure": "Configure",
++    "keyTester": "Key Tester",
++    "settings": "Settings",
++    "firmwareDocs": "Firmware + Docs",
++    "discord": "Discord",
++    "github": "Github",
++    "authorize": "Authorize device"
++  },
++  "common": {
++    "save": "Save",
++    "load": "Load",
++    "import": "Import",
++    "export": "Export",
++    "apply": "Apply",
++    "reset": "Reset",
++    "cancel": "Cancel",
++    "ok": "OK",
++    "close": "Close",
++    "back": "Back",
++    "next": "Next",
++    "search": "Search",
++    "connect": "Connect",
++    "disconnect": "Disconnect",
++    "connected": "Connected",
++    "disconnected": "Disconnected",
++    "device": "Device",
++    "keyboard": "Keyboard",
++    "layout": "Layout",
++    "layer": "Layer",
++    "layers": "Layers",
++    "macro": "Macro",
++    "macros": "Macros",
++    "rgb": "RGB",
++    "effect": "Effect",
++    "speed": "Speed",
++    "brightness": "Brightness",
++    "saturation": "Saturation",
++    "hue": "Hue",
++    "color": "Color",
++    "profile": "Profile",
++    "profiles": "Profiles",
++    "language": "Language",
++    "english": "English",
++    "chineseSimplified": "简体中文"
++  },
++  "dialogs": {
++    "confirmResetTitle": "Reset settings?",
++    "confirmResetBody": "This will reset current page settings to default.",
++    "confirm": "Confirm"
++  },
++  "errors": {
++    "deviceNotFound": "No compatible device found.",
++    "connectionLost": "Connection lost.",
++    "permissionDenied": "Permission denied. Please grant WebHID access."
++  },
++  "tooltips": {
++    "openHID": "Click to connect your keyboard via WebHID.",
++    "unlockBootloader": "Hold boot key or use reset combo to enter bootloader."
++  }
++}
+diff --git a/src/locales/zh/translation.json b/src/locales/zh/translation.json
+new file mode 100644
+index 0000000..9999999
+--- /dev/null
++++ b/src/locales/zh/translation.json
+@@ -0,0 +1,160 @@
++{
++  "nav": {
++    "configure": "配置",
++    "keyTester": "按键测试",
++    "settings": "设置",
++    "firmwareDocs": "固件与文档",
++    "discord": "Discord 社群",
++    "github": "GitHub",
++    "authorize": "授权设备"
++  },
++  "common": {
++    "save": "保存",
++    "load": "加载",
++    "import": "导入",
++    "export": "导出",
++    "apply": "应用",
++    "reset": "重置",
++    "cancel": "取消",
++    "ok": "确定",
++    "close": "关闭",
++    "back": "返回",
++    "next": "下一步",
++    "search": "搜索",
++    "connect": "连接",
++    "disconnect": "断开连接",
++    "connected": "已连接",
++    "disconnected": "未连接",
++    "device": "设备",
++    "keyboard": "键盘",
++    "layout": "布局",
++    "layer": "层",
++    "layers": "多层",
++    "macro": "宏",
++    "macros": "宏",
++    "rgb": "灯效",
++    "effect": "效果",
++    "speed": "速度",
++    "brightness": "亮度",
++    "saturation": "饱和度",
++    "hue": "色相",
++    "color": "颜色",
++    "profile": "配置",
++    "profiles": "配置集",
++    "language": "语言",
++    "english": "English",
++    "chineseSimplified": "简体中文"
++  },
++  "dialogs": {
++    "confirmResetTitle": "确认重置？",
++    "confirmResetBody": "这将把当前页面设置恢复为默认值。",
++    "confirm": "确认"
++  },
++  "errors": {
++    "deviceNotFound": "未发现兼容设备。",
++    "connectionLost": "连接已断开。",
++    "permissionDenied": "权限被拒绝，请授予 WebHID 访问权限。"
++  },
++  "tooltips": {
++    "openHID": "点击通过 WebHID 连接键盘。",
++    "unlockBootloader": "按住引导键或使用组合键进入引导模式。"
++  }
++}
+diff --git a/src/components/LanguageSwitcher.tsx b/src/components/LanguageSwitcher.tsx
+new file mode 100644
+index 0000000..aaaaaaa
+--- /dev/null
++++ b/src/components/LanguageSwitcher.tsx
+@@ -0,0 +1,28 @@
++import { useTranslation } from "react-i18next";
++
++export default function LanguageSwitcher() {
++  const { i18n, t } = useTranslation();
++  const val = i18n.language.startsWith("zh") ? "zh" : "en";
++  return (
++    <label style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
++      <span>{t("common.language")}</span>
++      <select
++        value={val}
++        onChange={(e) => i18n.changeLanguage(e.target.value)}
++        style={{ padding: 4 }}
++      >
++        <option value="zh">{t("common.chineseSimplified")}</option>
++        <option value="en">{t("common.english")}</option>
++      </select>
++    </label>
++  );
++}
+diff --git a/src/main.tsx b/src/main.tsx
+new file mode 100644
+index 0000000..bbbbbbb
+--- /dev/null
++++ b/src/main.tsx
+@@ -0,0 +1,16 @@
++// 若仓库已有 main.tsx / index.tsx，请只新增下面一行： import "./i18n";
++import React from "react";
++import ReactDOM from "react-dom/client";
++import "./i18n";
++import App from "./App";
++
++ReactDOM.createRoot(document.getElementById("root")!).render(
++  <React.StrictMode>
++    <App />
++  </React.StrictMode>
++);
+diff --git a/i18next-parser.config.cjs b/i18next-parser.config.cjs
+new file mode 100644
+index 0000000..ccccccc
+--- /dev/null
++++ b/i18next-parser.config.cjs
+@@ -0,0 +1,24 @@
++module.exports = {
++  locales: ["en", "zh"],
++  output: "src/locales/$LOCALE/translation.json",
++  input: ["src/**/*.{ts,tsx}"],
++  lexers: {
++    tsx: ["JSX"],
++    ts: ["JavascriptLexer"]
++  },
++  keepRemoved: true,
++  createOldCatalogs: false,
++};

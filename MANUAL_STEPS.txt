@@ -1,0 +1,19 @@
+将本覆盖包解压到你的仓库根目录（保持 src/ 结构）。然后：
+
+1) 在 package.json 的 "scripts" 中新增一行：
+   "start": "npm run dev"
+
+2) 安装依赖：
+   npm i i18next react-i18next i18next-browser-languagedetector i18next-icu
+
+3) 在入口文件顶部引入 i18n（任选其一存在的入口）：
+   - src/main.tsx 顶部添加： import "./i18n";
+   - 或 src/index.tsx 顶部添加： import "./i18n";
+
+4) 运行：
+   npm run dev
+
+5) （可选）把 <LanguageSwitcher /> 放在导航处以切换语言。
+
+注意：不要把 URL 写进 t()；仅翻译可见文本，例如：
+  <a href="https://caniuse.com/?search=webhid">{t("nav.firmwareDocs")}</a>
