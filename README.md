@@ -27,3 +27,4 @@ cd via-cn
 部分用户可能需要安装依赖，安装方法：
 powershell依次运行：powershell -c "irm bun.sh/install.ps1 | iex"
 bun install
+bun install --force github:the-via/keyboards
